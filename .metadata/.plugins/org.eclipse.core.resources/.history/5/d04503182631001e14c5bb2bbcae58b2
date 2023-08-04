@@ -1,0 +1,17 @@
+import java.io.IOException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class FileUploadUsingAutoItTool {
+
+	public static void main(String[] args) throws InterruptedException, IOException {
+		ChromeDriver driver=new ChromeDriver();
+		driver.get("https://convertio.co/convert-pdf-to-jpg/");
+		driver.findElement(By.xpath("//label[@class='action-label']")).click();
+		Thread.sleep(2000);
+		Runtime.getRuntime().exec("C:\\Users\\shris\\OneDrive\\Documents\\fileupload.exe");
+		
+	}
+
+}

@@ -1,0 +1,170 @@
+package ECommerce.tests;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SignUpStandAlone {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("http://localhost:3000/signUp");
+		
+		//Enter First Name
+		driver.findElement(By.id(":r1:")).sendKeys("Rahul");
+		
+		//Enter last Name
+		driver.findElement(By.id(":r3:")).sendKeys("K");
+		
+		//Enter Email ID
+		driver.findElement(By.id(":r5:")).sendKeys("rahul@yopmail.com");
+				
+		//Enter Phone Number
+		driver.findElement(By.id(":r7:")).sendKeys("9999999999");
+		
+		//Gender dropdown
+		WebElement dropdownbox=driver.findElement(By.cssSelector("[aria-haspopup='listbox']"));
+		//click on dropdown
+		dropdownbox.click();
+		//select male
+		driver.findElement(By.cssSelector("[data-value=\"Male\"]")).click();
+		
+		//calendar icon click
+		driver.findElement(By.cssSelector("[aria-label=\"Choose date\"]")).click();
+		
+		//click on yeardropdown
+		driver.findElement(By.cssSelector("button [data-testid=\"ArrowDropDownIcon\"]")).click();
+		int yearcount=driver.findElements(By.cssSelector(".MuiPickersYear-root")).size();
+		
+		for (int i = 0; i < yearcount; i++)
+
+		{
+
+			//Thread.sleep(2000);
+
+			String getYear = driver.findElements(By.cssSelector(".MuiPickersYear-root")).get(i).getText();
+
+			if (getYear.equalsIgnoreCase("2013"))
+
+			{
+
+				driver.findElements(By.cssSelector(".MuiPickersYear-root")).get(i).click();
+
+				System.out.println("The selected year is:" +getYear);
+
+				break;
+
+			}
+
+		}
+		
+		while(!driver.findElement(By.id(":rj:-grid-label")).getText().contains("October")) {
+			Thread.sleep(2000);
+			driver.findElement(By.cssSelector("[data-testid=\"ArrowRightIcon\"]")).click();
+		}
+		
+	int dayCount=driver.findElements(By.cssSelector(".MuiPickersDay-root.MuiPickersDay-dayWithMargin ")).size();
+		
+		for (int i = 0; i < dayCount; i++)
+
+		{
+
+			Thread.sleep(2000);
+
+			String getDay = driver.findElements(By.cssSelector(".MuiPickersDay-root.MuiPickersDay-dayWithMargin ")).get(i).getText();
+
+			if (getDay.equalsIgnoreCase("18"))
+
+			{
+
+				driver.findElements(By.cssSelector(".MuiPickersDay-root.MuiPickersDay-dayWithMargin ")).get(i).click();
+
+				System.out.println("The selected Day is:" +getDay);
+
+				break;
+
+			}
+
+		}
+		
+		String date = driver.findElement(By.id(":r9:")).getAttribute("value");
+
+		System.out.println("The select date is:" + date);
+		/*
+		while (!driver.findElement(By.xpath("//div[@class='flatpickr-month']")).getText().contains("June"))
+
+		{
+
+			Thread.sleep(2000);
+
+			driver.findElement(By.xpath("//span[@class='flatpickr-next-month']")).click();
+
+		}
+
+		int count = driver.findElements(By.xpath("//span[@class='flatpickr-day ']")).size();
+
+		for (int i = 0; i < count; i++)
+
+		{
+
+			Thread.sleep(2000);
+
+			String text = driver.findElements(By.xpath("//span[@class='flatpickr-day ']")).get(i).getText();
+
+			if (text.equalsIgnoreCase("26"))
+
+			{
+
+				driver.findElements(By.xpath("//span[@class='flatpickr-day ']")).get(i).click();
+
+				System.out.println("The select day is:" + text);
+
+				break;
+
+			}
+
+		}
+
+		String date = driver.findElement(By.xpath("//*[@id='form-field-travel_comp_date']")).getAttribute("value");
+
+		System.out.println("The select date is:" + date);
+
+	}
+	*/	
+		
+		
+		//Enter password and click on password eye (Pending)
+		driver.findElement(By.id(":rd:")).sendKeys("qwer1234");
+		//driver.findElement(By.className("css-8je8zh-MuiTouchRipple-root")).click();
+		
+		//Enter Confirm password and click on password eye (Pending)
+		driver.findElement(By.id(":rf:")).sendKeys("qwer1234");
+		
+		//Click on Terms and Condition
+		
+		
+		//Accept Terms and Condition
+		driver.findElement(By.cssSelector("[type=\"checkbox\"]")).click();
+		
+		//Click on Sign Up
+		driver.findElement(By.cssSelector("[type=\"submit\"]")).click();
+		
+		//Field Level Error Printing (Not Working)
+		//System.out.println(driver.findElement(By.id(":r1:-helper-text"))); //Name Field
+		
+		
+		
+		
+		
+	}
+
+	}
+
+

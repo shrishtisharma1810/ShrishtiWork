@@ -1,0 +1,64 @@
+package ECommerce.tests;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class SignUpStandAlone {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		ChromeDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		driver.get("http://localhost:3000/signUp");
+		
+		//Enter First Name
+		driver.findElement(By.id(":r1:")).sendKeys("Rahul");
+		
+		//Enter last Name
+		driver.findElement(By.id(":r3:")).sendKeys("K");
+		
+		//Enter Email ID
+		driver.findElement(By.id(":r5:")).sendKeys("rahul@yopmail.com");
+				
+		//Enter Phone Number
+		driver.findElement(By.id(":r9:")).sendKeys("9999999999");
+		
+		WebElement dropdownbox=driver.findElement(By.cssSelector("[aria-haspopup='listbox']"));
+		dropdownbox.click();
+		
+		
+		
+		//Enter password and click on password eye (Pending)
+		driver.findElement(By.id(":rd:")).sendKeys("qwer1234");
+		//driver.findElement(By.className("css-8je8zh-MuiTouchRipple-root")).click();
+		
+		//Enter Confirm password and click on password eye (Pending)
+		driver.findElement(By.id(":rf:")).sendKeys("qwer1234");
+		
+		//Click on Terms and Condition
+		
+		
+		//Accept Terms and Condition
+		driver.findElement(By.className("css-x6zrxh-MuiTypography-root")).click();
+		
+		//Click on Sign Up
+		driver.findElement(By.className("css-80w01p-MuiButtonBase-root-MuiButton-root")).click();
+		
+		//Field Level Error Printing (Not Working)
+		//System.out.println(driver.findElement(By.id(":r1:-helper-text"))); //Name Field
+		
+		
+		
+		
+		
+	}
+
+	}
+
+}
